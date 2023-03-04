@@ -12,6 +12,7 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   modern-normalize: ^1.1.0
+  pkce-gen: ^1.1.0
   postcss: ^8.4.21
   prettier: ^2.8.0
   prettier-plugin-tailwindcss: ^0.2.4
@@ -26,6 +27,7 @@ specifiers:
 dependencies:
   '@fontsource/metropolis': 4.5.3
   modern-normalize: 1.1.0
+  pkce-gen: 1.1.0
 
 devDependencies:
   '@playwright/test': 1.31.2
@@ -1565,6 +1567,10 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /pkce-gen/1.1.0:
+    resolution: {integrity: sha512-pCXX7hcHBW4Cqvu8bSN/5+NLDNOg61VqiK9/1JSfppUHyTPuaNmZo8T8tydj0/AVlaDQpAB9+6iwCOT6yI7xsQ==}
+    dev: false
 
   /playwright-core/1.31.2:
     resolution: {integrity: sha512-a1dFgCNQw4vCsG7bnojZjDnPewZcw7tZUNFN0ZkcLYKj+mPmXvg4MpaaKZ5SgqPsOmqIf2YsVRkgqiRDxD+fDQ==}
