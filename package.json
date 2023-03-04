@@ -38,6 +38,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/metropolis": "^4.5.3",
+		"lucide-svelte": "^0.122.0",
 		"modern-normalize": "^1.1.0",
 		"pkce-gen": "^1.1.0"
 	}

@@ -12,6 +12,7 @@ specifiers:
   eslint: ^8.28.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
+  lucide-svelte: ^0.122.0
   modern-normalize: ^1.1.0
   pkce-gen: ^1.1.0
   postcss: ^8.4.21
@@ -27,6 +28,7 @@ specifiers:
 
 dependencies:
   '@fontsource/metropolis': 4.5.3
+  lucide-svelte: 0.122.0_svelte@3.55.1
   modern-normalize: 1.1.0
   pkce-gen: 1.1.0
 
@@ -1379,6 +1381,14 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /lucide-svelte/0.122.0_svelte@3.55.1:
+    resolution: {integrity: sha512-MilZxVfQam3r0jYZWYOe6UVNmjsjWlnivYsJaYV+nwiEVrab23sL3URagL92OeDEMQN0oxULJp40rMC/5a6bXw==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      svelte: 3.55.1
+    dev: false
+
   /magic-string/0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
     engines: {node: '>=12'}
@@ -2013,7 +2023,6 @@ packages:
   /svelte/3.55.1:
     resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}
     engines: {node: '>= 8'}
-    dev: true
 
   /tailwindcss/3.2.7_postcss@8.4.21:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
