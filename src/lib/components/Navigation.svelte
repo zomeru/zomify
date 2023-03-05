@@ -13,6 +13,7 @@
 
 	let openMenuButton: HTMLButtonElement;
 	let closeMenuButton: HTMLButtonElement;
+	let lastFocusableElement: HTMLAnchorElement;
 
 	const menuItems: {
 		path: string;
@@ -39,6 +40,32 @@
 		openMenuButton.focus();
 	};
 
+	const moveFocusToBottom = (e: KeyboardEvent) => {
+		if (desktop) return;
+
+		if (e.key === 'Tab' && e.shiftKey) {
+			e.preventDefault();
+			lastFocusableElement.focus();
+		}
+	};
+
+	const moveFocusToTop = (e: KeyboardEvent) => {
+		if (desktop) return;
+
+		if (e.key === 'Tab' && !e.shiftKey) {
+			e.preventDefault();
+			closeMenuButton.focus();
+		}
+	};
+
+	const handleEscape = (e: KeyboardEvent) => {
+		if (desktop) return;
+
+		if (e.key === 'Escape') {
+			closeMenu();
+		}
+	};
+
 	beforeNavigate(() => {
 		isMobileMenuOpen = false;
 	});
@@ -58,6 +85,7 @@
 	{#if !desktop && isMobileMenuOpen}
 		<div
 			on:click={closeMenu}
+			on:keyup={handleEscape}
 			transition:fade={{
 				duration: 200
 			}}
@@ -70,6 +98,7 @@
 		{/if}
 		<div
 			id="nav-content-inner"
+			on:keyup={handleEscape}
 			style:visibility={isOpen ? 'visible' : 'hidden'}
 			class="p-5 min-w-[250px] bg-sidebarColor h-screen overflow-auto transition-all duration-200 {desktop
 				? 'hidden md:block'
@@ -78,30 +107,42 @@
 				: ''}"
 		>
 			{#if !desktop}
-				<button bind:this={closeMenuButton} on:click={closeMenu}>Close</button>
+				<button bind:this={closeMenuButton} on:click={closeMenu} on:keydown={moveFocusToBottom}
+					>Close</button
+				>
 			{/if}
 			<img src={logo} alt="Spotify Logo" id="logo" class="max-w-full w-[130px]" />
 			<ul class="p-0 m-0 mt-5 list-none">
-				{#each menuItems as item}
+				{#each menuItems as item, index}
 					{@const isActive = item.path === $page.url.pathname}
+					{@const iconProps = {
+						class: 'mr-3',
+						focusable: 'false',
+						'aria-hidden': true,
+						color: 'var(--text-color)',
+						size: 26,
+						strokeWidth: 2
+					}}
+					{@const anchorClass = `flex items-center text-textColor text-sm font-medium p-1 my-2 opacity-70 transition-opacity duration-200 hover:opacity-100 focus:opacity-100 ${
+						isActive ? 'opacity-100' : ''
+					}`}
 					<li class={isActive ? '' : ''}>
-						<a
-							href={item.path}
-							class="flex items-center text-textColor text-sm font-medium p-1 my-2 opacity-70 transition-opacity duration-200 hover:opacity-100 focus:opacity-100 {isActive
-								? 'opacity-100'
-								: ''}"
-						>
-							<svelte:component
-								this={item.icon}
-								class="mr-3"
-								focusable="false"
-								aria-hidden="true"
-								color="var(--text-color)"
-								size={26}
-								strokeWidth={2}
-							/>
-							{item.label}
-						</a>
+						{#if menuItems.length === index + 1}
+							<a
+								bind:this={lastFocusableElement}
+								href={item.path}
+								class={anchorClass}
+								on:keydown={moveFocusToTop}
+							>
+								<svelte:component this={item.icon} {...iconProps} />
+								{item.label}
+							</a>
+						{:else}
+							<a href={item.path} class={anchorClass}>
+								<svelte:component this={item.icon} {...iconProps} />
+								{item.label}
+							</a>
+						{/if}
 					</li>
 				{/each}
 			</ul>
