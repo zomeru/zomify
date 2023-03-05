@@ -13,7 +13,6 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   lucide-svelte: ^0.122.0
-  modern-normalize: ^1.1.0
   pkce-gen: ^1.1.0
   postcss: ^8.4.21
   prettier: ^2.8.0
@@ -29,7 +28,6 @@ specifiers:
 dependencies:
   '@fontsource/metropolis': 4.5.3
   lucide-svelte: 0.122.0_svelte@3.55.1
-  modern-normalize: 1.1.0
   pkce-gen: 1.1.0
 
 devDependencies:
@@ -1450,11 +1448,6 @@ packages:
     dependencies:
       minimist: 1.2.8
     dev: true
-
-  /modern-normalize/1.1.0:
-    resolution: {integrity: sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==}
-    engines: {node: '>=6'}
-    dev: false
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
