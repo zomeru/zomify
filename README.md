@@ -1,28 +1,33 @@
-# create-svelte
+# Zomify
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A spotify clone built with SvelteKit and Tailwind CSS.
 
-## Creating a project
+## Setting up environment
 
-If you're seeing this, you've probably already done this step. Congrats!
+Create a `.env` file in root directory.
+
+Create a spotify developer app and get your credentials [here](https://developer.spotify.com/dashboard/applications).
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
 
-# create a new project in my-app
-npm create svelte@latest my-app
+SPOTIFY_APP_CLIENT_ID=YOUR_SPOTIFY_CLIENT_ID
+SPOTIFY_APP_CLIENT_SECRET=YOUR_SPOTIFY_CLIENT_SECRET
+
+SPOTIFY_BASE_URL=https://api.spotify.com/v1
+BASE_URL=http://localhost:3000
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
-npm run dev
+pnpm install
+
+# then
+
+pnpm run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm run dev -- --open
 ```
 
 ## Building
@@ -30,9 +35,9 @@ npm run dev -- --open
 To create a production version of your app:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `pnpm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
