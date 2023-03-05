@@ -29,7 +29,8 @@
 					trigger: 'click',
 					placement: 'bottom-end',
 					interactive: true,
-					theme: 'menu'
+					theme: 'menu',
+					hideOnPopperBlur: true
 				}}
 				class="border border-borderColor flex p-1 rounded-full items-center text-textColor cursor-pointer hover:bg-accentColor"
 			>

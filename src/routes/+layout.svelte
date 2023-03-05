@@ -1,7 +1,14 @@
 <script lang="ts">
-	import { LogoutButton, Navigation, Header } from '$components';
+	import { Navigation, Header } from '$components';
+	import { page } from '$app/stores';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
+	import NProgress from 'nprogress';
+	import { hideAll } from 'tippy.js';
 	import type { LayoutData } from './$types';
+	import 'nprogress/nprogress.css';
 	import '../app.css';
+
+	NProgress.configure({ showSpinner: false });
 
 	export let data: LayoutData;
 	$: user = data.user;
@@ -14,9 +21,25 @@
 	$: if (topBar) {
 		headerOpacity = scrollY / topBar.offsetHeight < 1 ? scrollY / topBar.offsetHeight : 1;
 	}
+
+	beforeNavigate(() => {
+		NProgress.start();
+		hideAll();
+	});
+
+	afterNavigate(() => {
+		NProgress.done();
+	});
 </script>
 
 <svelte:window bind:scrollY />
+<svelte:head>
+	<title>Zomify{$page.data.title ? ` - ${$page.data.title}` : ' - A spotify clone'}</title>
+</svelte:head>
+
+{#if user}
+	<a href="#main-content" class="skip-link"> Skip to content </a>
+{/if}
 
 <div id="main" class="flex">
 	{#if user}
