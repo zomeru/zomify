@@ -9,8 +9,10 @@
 	$: user = data.user;
 </script>
 
-{#if user}
-	<p>Hello {user.display_name}</p>
-	<LogoutButton />
-{/if}
-<slot />
+<div id="main" class="min-h-screen">
+	<div id="content" class="min-h-screen">
+		<main id="main-content" class="py-[30px] min-h-screen px-[15px] md:px-[30px]">
+			<slot />
+		</main>
+	</div>
+</div>

@@ -108,3 +108,7 @@ a:focus-visible {
 	outline: 2px solid var(--accent-color);
 	outline-offset: 2px;
 }
+
+.gradient-bg {
+	background-image: linear-gradient(230deg, var(--sidebar-color), var(--bg-color));
+}
