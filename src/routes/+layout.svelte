@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LogoutButton, Navigation, Header } from '$lib/components';
+	import { LogoutButton, Navigation, Header } from '$components';
 	import type { LayoutData } from './$types';
 	import '../app.css';
 
@@ -14,8 +14,6 @@
 	$: if (topbar) {
 		headerOpacity = scrollY / topbar.offsetHeight < 1 ? scrollY / topbar.offsetHeight : 1;
 	}
-
-	const asd = undefined;
 </script>
 
 <svelte:window bind:scrollY />
@@ -29,15 +27,14 @@
 	<div id="content" class="flex-1">
 		<div
 			bind:this={topbar}
-			class="fixed h-[60px] px-[15px] flex items-center w-full z-50 md:px-[30px] md:w-[cacl(100%-250px)]"
+			class="fixed h-[60px] px-[15px] flex items-center w-full  md:px-[30px] md:w-[cacl(100%-250px)] z-[100]"
 		>
 			<div
 				style:background-color="var(--header-color)"
-				style:opacity={headerOpacity}
+				style:opacity={`${headerOpacity}`}
 				class="absolute w-full h-full top-0 left-0 z-[-1]"
-			>
-				<Header />
-			</div>
+			/>
+			<Header />
 		</div>
 		<main
 			id="main-content"

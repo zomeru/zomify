@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { type ComponentType, tick } from 'svelte';
-	import { Home, Search, ListMusic, type Icon } from 'lucide-svelte';
+	import { Home, Search, ListMusic, Menu, X, type Icon } from 'lucide-svelte';
 	import { fade } from 'svelte/transition';
 	import logo from '$assets/Spotify_Logo_RGB_White.png';
 	import { page } from '$app/stores';
 	import { beforeNavigate } from '$app/navigation';
+	import { IconButton } from '$components';
 
 	export let desktop: boolean;
 
 	let isMobileMenuOpen = false;
 	$: isOpen = desktop || isMobileMenuOpen;
 
-	let openMenuButton: HTMLButtonElement;
-	let closeMenuButton: HTMLButtonElement;
+	let openMenuButton: IconButton;
+	let closeMenuButton: IconButton;
 	let lastFocusableElement: HTMLAnchorElement;
 
 	const menuItems: {
@@ -30,14 +31,14 @@
 		await tick();
 
 		setTimeout(() => {
-			closeMenuButton.focus();
+			closeMenuButton.getButton().focus();
 		}, 210);
 	};
 
 	const closeMenu = async () => {
 		isMobileMenuOpen = false;
 		await tick();
-		openMenuButton.focus();
+		openMenuButton.getButton().focus();
 	};
 
 	const moveFocusToBottom = (e: KeyboardEvent) => {
@@ -54,7 +55,7 @@
 
 		if (e.key === 'Tab' && !e.shiftKey) {
 			e.preventDefault();
-			closeMenuButton.focus();
+			closeMenuButton.getButton().focus();
 		}
 	};
 
@@ -94,7 +95,14 @@
 	{/if}
 	<nav aria-label="Main">
 		{#if !desktop}
-			<button bind:this={openMenuButton} on:click={openMenu} aria-expanded={isOpen}>Open</button>
+			<IconButton
+				label="Menu"
+				icon={Menu}
+				bind:this={openMenuButton}
+				on:click={openMenu}
+				aria-expanded={isOpen}
+				className="block md:hidden"
+			/>
 		{/if}
 		<div
 			id="nav-content-inner"
@@ -107,9 +115,14 @@
 				: ''}"
 		>
 			{#if !desktop}
-				<button bind:this={closeMenuButton} on:click={closeMenu} on:keydown={moveFocusToBottom}
-					>Close</button
-				>
+				<IconButton
+					label="Close Menu"
+					icon={X}
+					bind:this={closeMenuButton}
+					on:click={closeMenu}
+					on:keydown={moveFocusToBottom}
+					className="absolute top-5 right-5"
+				/>
 			{/if}
 			<img src={logo} alt="Spotify Logo" id="logo" class="max-w-full w-[130px]" />
 			<ul class="p-0 m-0 mt-5 list-none">
@@ -119,11 +132,10 @@
 						class: 'mr-3',
 						focusable: 'false',
 						'aria-hidden': true,
-						color: 'var(--text-color)',
 						size: 26,
 						strokeWidth: 2
 					}}
-					{@const anchorClass = `flex items-center text-textColor text-sm font-medium p-1 my-2 opacity-70 transition-opacity duration-200 hover:opacity-100 focus:opacity-100 ${
+					{@const anchorClass = `flex items-center text-textColor text-sm font-medium p-1 my-2 opacity-70 transition-opacity duration-200 hover:opacity-100 focus:opacity-100 text-textColor ${
 						isActive ? 'opacity-100' : ''
 					}`}
 					<li class={isActive ? '' : ''}>
