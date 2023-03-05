@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
+
+	export let className = '';
 </script>
 
 <form
@@ -15,6 +18,7 @@
 
 		if (response.ok) invalidateAll();
 	}}
+	use:enhance
 >
-	<button type="submit">Logout</button>
+	<button type="submit" class={className}>Logout</button>
 </form>
