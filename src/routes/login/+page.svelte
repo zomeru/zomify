@@ -7,7 +7,7 @@
 <svelte:head>
 	<style>
 		body {
-			background-image: linear-gradient(230deg, var(--sidebar-color), var(--bg-color));
+			background-image: linear-gradient(230deg, #000, #191414);
 		}
 	</style>
 </svelte:head>

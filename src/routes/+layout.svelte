@@ -54,9 +54,8 @@
 				class="fixed h-[60px] px-[15px] flex items-center w-full  md:px-[30px] md:w-[cacl(100%-250px)] z-[100]"
 			>
 				<div
-					style:background-color="var(--header-color)"
 					style:opacity={`${headerOpacity}`}
-					class="absolute w-full h-full top-0 left-0 z-[-1]"
+					class="absolute w-full h-full top-0 left-0 z-[-1] bg-headerColor"
 				/>
 				<Header />
 			</div>

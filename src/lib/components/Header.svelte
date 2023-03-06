@@ -44,7 +44,7 @@
 		<div id="profile-menu" class="hidden absolute w-full left-0 bg-menuBackgroundColor">
 			<div class="py-1">
 				<ul class="p-0 m-0">
-					<li class="btn-outline-hover">
+					<li class="btn-gradient-light">
 						<a
 							class="py-3 px-4 border-none bg-none cursor-pointer text-menuText inline-block"
 							href={user?.external_urls.spotify}
@@ -56,13 +56,13 @@
 							/></a
 						>
 					</li>
-					<li class="btn-outline-hover">
+					<li class="btn-gradient-light">
 						<a
 							class="py-3 px-4 border-none bg-none cursor-pointer text-menuText w-full inline-block"
 							href="/profile">View Profile</a
 						>
 					</li>
-					<li class="btn-outline-hover">
+					<li class="btn-gradient-light">
 						<div class="border-none bg-none cursor-pointer text-menuText">
 							<LogoutButton className="px-4 py-3  w-full text-left" />
 						</div>
