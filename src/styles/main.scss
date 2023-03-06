@@ -1,8 +1,10 @@
+@use 'functions';
 @import '@fontsource/metropolis';
 @import '@fontsource/metropolis/300';
 @import '@fontsource/metropolis/500';
 @import '@fontsource/metropolis/600';
 @import '@fontsource/metropolis/700';
+@import 'tippy-theme';
 
 @tailwind base;
 @tailwind components;
@@ -38,6 +40,7 @@
 	--sidebar-color: #000;
 	--menu-background-color: #2e2e2e;
 	--menu-text-color: #fff;
+	--header-color: #000;
 }
 
 body {
@@ -64,26 +67,26 @@ h6 {
 }
 
 h1 {
-	font-size: 2.188rem;
+	font-size: functions.toRem(36);
 }
 h2 {
-	font-size: 2rem;
+	font-size: functions.toRem(32);
 }
 h3 {
-	font-size: 1.75;
+	font-size: functions.toRem(28);
 }
 h4 {
-	font-size: 1.5rem;
+	font-size: functions.toRem(24);
 }
 h5 {
-	font-size: 1.25rem;
+	font-size: functions.toRem(20);
 }
 h6 {
-	font-size: 1rem;
+	font-size: functions.toRem(16);
 }
 
 p {
-	font-size: 1rem;
+	font-size: functions.toRem(16);
 	line-height: 1.7;
 	margin-top: 1em;
 	margin-bottom: 1em;
@@ -109,32 +112,6 @@ a:focus-visible {
 .clip-none {
 	clip: auto;
 	clip-path: none;
-}
-
-.tippy-box[data-theme~='menu'] {
-	background-color: var(--menu-background-color);
-	color: var(--menu-text-color);
-	border-radius: 3px;
-	box-shadow: 0 13px 20px rgba(0, 0, 0, 0.3);
-}
-
-.tippy-box[data-theme~='menu'] .tippy-content {
-	padding: 0px;
-	width: 200px;
-	max-width: 100%;
-}
-
-.tippy-box[data-theme~='menu'][data-placement^='top'] > .tippy-arrow::before {
-	border-top-color: var(--menu-background-color);
-}
-.tippy-box[data-theme~='menu'][data-placement^='bottom'] > .tippy-arrow::before {
-	border-bottom-color: var(--menu-background-color);
-}
-.tippy-box[data-theme~='menu'][data-placement^='left'] > .tippy-arrow::before {
-	border-left-color: var(--menu-background-color);
-}
-.tippy-box[data-theme~='menu'][data-placement^='right'] > .tippy-arrow::before {
-	border-right-color: var(--menu-background-color);
 }
 
 #nprogress .bar {

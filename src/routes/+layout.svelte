@@ -6,7 +6,8 @@
 	import { hideAll } from 'tippy.js';
 	import type { LayoutData } from './$types';
 	import 'nprogress/nprogress.css';
-	import '../app.css';
+	// import '../app.css';
+	import '../styles/main.scss';
 
 	NProgress.configure({ showSpinner: false });
 
@@ -50,8 +51,9 @@
 	<div id="content" class="flex-1">
 		{#if user}
 			<div
+				id="topBar"
 				bind:this={topBar}
-				class="fixed h-[60px] px-[15px] flex items-center w-full  md:px-[30px] md:w-[cacl(100%-250px)] z-[100]"
+				class="fixed h-[60px] px-[15px] flex items-center w-full md:px-[30px] md:w-[calc(100%-250px)] z-[100]"
 			>
 				<div
 					style:opacity={`${headerOpacity}`}
@@ -63,8 +65,43 @@
 		<main
 			id="main-content"
 			class="py-[30px] px-[15px] md:px-[30px] {user ? 'pt-[calc(30px+60px)]' : ''}"
+			class:logged-in={user}
 		>
 			<slot />
 		</main>
 	</div>
 </div>
+
+<style lang="scss">
+	#main {
+		:global(html.no-js) & {
+			@media only screen and (max-width: 768px) {
+				display: block;
+			}
+		}
+
+		#topBar {
+			:global(html.no-js) & {
+				position: sticky;
+				top: 0;
+				background-color: var(--header-color);
+				height: auto;
+				padding: 10px 20px;
+
+				@media only screen and (min-width: 768px) {
+					position: fixed;
+				}
+			}
+		}
+
+		#main-content {
+			&.logged-in {
+				:global(html.no-js) & {
+					@media only screen and (max-width: 768px) {
+						padding-top: 30px;
+					}
+				}
+			}
+		}
+	}
+</style>

@@ -8,15 +8,16 @@
 	$: user = $page.data.user;
 </script>
 
-<div id="content" class="w-full md:w-[calc(100%-250px)] h-full flex justify-between items-center">
+<div id="content" class="w-full h-full flex justify-between items-center">
 	<div id="left" class="">
 		{#if browser}
 			<Navigation desktop={false} />
 		{/if}
 	</div>
 	<div id="right" class="">
-		<div id="profile-button">
+		<div id="profile-buttons">
 			<button
+				id="profile-button"
 				use:tippy={{
 					content: document.getElementById('profile-menu') || undefined,
 					onMount: () => {
@@ -32,7 +33,7 @@
 					theme: 'menu',
 					hideOnPopperBlur: true
 				}}
-				class="border border-borderColor flex p-1 rounded-full items-center text-textColor cursor-pointer hover:bg-accentColor"
+				class="border border-borderColor flex p-1 rounded-full items-center text-textColor cursor-pointer hover:bg-accentColor default-transition"
 			>
 				{#if user?.images && user.images.length > 0}
 					<img src={user.images[0].url} alt="" class="w-[28px] h-[28px] rounded-full mr-2" />
@@ -42,7 +43,7 @@
 			</button>
 		</div>
 		<div id="profile-menu" class="hidden absolute w-full left-0 bg-menuBackgroundColor">
-			<div class="py-1">
+			<div id="profile-menu-content" class="py-1">
 				<ul class="p-0 m-0">
 					<li class="btn-gradient-light">
 						<a
@@ -72,3 +73,31 @@
 		</div>
 	</div>
 </div>
+
+<style lang="scss">
+	#profile-button {
+		:global(html.no-js) & {
+			display: none;
+		}
+	}
+
+	:global(html.no-js) #profile-menu {
+		display: block !important;
+		background-color: var(--header-color) !important;
+		
+
+		#profile-menu-content {
+			ul {
+				padding: 0;
+				margin: 0;
+				display: flex;
+				justify-content: 	flex-end;
+				flex-wrap: wrap;
+
+				@media only screen and (max-width: 450px) {
+					justify-content: 	flex-start;
+				}
+			}
+		}
+	}
+</style>

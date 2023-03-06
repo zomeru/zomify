@@ -161,3 +161,14 @@
 		</div>
 	</nav>
 </div>
+
+<style lang="scss">
+	#nav-content-inner {
+		:global(html.no-js) & {
+			@media only screen and (max-width: 768px) {
+				display: block;
+				height: auto;
+			}
+		}
+	}
+</style>
