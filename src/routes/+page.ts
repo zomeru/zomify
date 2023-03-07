@@ -1,7 +1,10 @@
 import type { PageLoad } from './$types';
+import { fetchRefresh } from '$helpers';
 
-export const load: PageLoad = async ({ fetch, parent }) => {
+export const load: PageLoad = async ({ fetch: _fetch, parent }) => {
 	const { user } = await parent();
+
+	const fetch = (path: string) => fetchRefresh(_fetch, path);
 
 	const dataUrls = {
 		newReleases: '/browse/new-releases?limit=6',
