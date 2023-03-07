@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getCopyrightSymbol, removeSymbol } from '$helpers';
-	import { ItemPage } from '$components';
+	import { ItemPage, TrackList } from '$components';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -24,13 +24,7 @@
 			>{`${album.total_tracks} Track${album.total_tracks > 1 ? 's' : ''}`}</span
 		>
 	</p>
-	<div class="tracks">
-		<ul>
-			{#each album.tracks.items as track}
-				<li>{track.name}</li>
-			{/each}
-		</ul>
-	</div>
+	<TrackList tracks={album.tracks.items} />
 
 	<div class="credits mt-10">
 		<p class="date text-lightGray m-0 text-xs">
