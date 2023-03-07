@@ -6,7 +6,6 @@
 	import { hideAll } from 'tippy.js';
 	import type { LayoutData } from './$types';
 	import 'nprogress/nprogress.css';
-	// import '../app.css';
 	import '../styles/main.scss';
 
 	NProgress.configure({ showSpinner: false });
@@ -57,7 +56,9 @@
 			>
 				<div
 					style:opacity={`${headerOpacity}`}
-					class="absolute w-full h-full top-0 left-0 z-[-1] bg-headerColor"
+					style:background-color={$page.data.color ? $page.data.color : 'var(--headerColor)'}
+					style:background-image="linear-gradient(rgba(0,0,0,0.2) 0 0)"
+					class="absolute w-full h-full top-0 left-0 z-[-1]"
 				/>
 				<Header />
 			</div>

@@ -6,13 +6,13 @@
 	export let data: PageData;
 
 	$: album = data.album;
-	$: console.log(album);
+	$: color = data.color;
 </script>
 
 <ItemPage
 	title={album.name}
 	type={album.type}
-	color={null}
+	{color}
 	image={album.images.length > 0 ? album.images[0].url : undefined}
 >
 	<p class="meta text-base font-semibold space-x-1" slot="meta">
