@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { msToTime } from '$helpers';
 	import { Clock8, ListPlus } from 'lucide-svelte';
+	import { Player } from '$components';
 
 	export let tracks: SpotifyApi.TrackObjectFull[] | SpotifyApi.TrackObjectSimplified[];
 </script>
@@ -26,6 +27,15 @@
 		>
 			<div class="number-column w-[30px] flex justify-end mr-[15px]">
 				<span class="number text-lightGray text-sm">{index + 1}</span>
+				<Player
+					{track}
+					on:play={(e) => {
+						console.log(e.detail.track);
+					}}
+					on:pause={(e) => {
+						console.log(e.detail.track);
+					}}
+				/>
 			</div>
 			<div class="info-column flex-1">
 				<div class="track-title flex items-center">
