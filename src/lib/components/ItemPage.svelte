@@ -19,11 +19,11 @@
 			<img
 				src={image}
 				alt={title}
-				class="w-full aspect-square object-cover sm:w-[230px] md:w-[200px] lg:w-[230px] shadow-2xl drop-shadow-2xl"
+				class="w-full aspect-square object-cover sm:w-[230px] md:w-[200px] lg:w-[230px]"
 			/>
 		{:else}
 			<div
-				class="cover-placeholder w-full aspect-square object-cover sm:w-[230px] md:w-[200px] lg:w-[230px] flex justify-center items-center bg-mediumGray shadow-2xl drop-shadow-2xl"
+				class="cover-placeholder w-full aspect-square object-cover sm:w-[230px] md:w-[200px] lg:w-[230px] flex justify-center items-center bg-mediumGray"
 			>
 				<Music focusable="false" aria-hidden class="w-[40%] h-[40%] text-lightGray" />
 			</div>
@@ -45,10 +45,8 @@
 </div>
 
 <style lang="scss">
-	.cover {
-		img,
-		.cover-placeholder {
-			box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-		}
+	img,
+	.cover-placeholder {
+		box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 	}
 </style>
