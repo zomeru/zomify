@@ -2,6 +2,10 @@
 	import { msToTime } from '$helpers';
 	import { Clock8, ListPlus } from 'lucide-svelte';
 	import { Player } from '$components';
+	import playingGif from '$assets/playing.gif';
+
+	let currentlyPlaying: string | null = null;
+	let isPaused: boolean = false;
 
 	export let tracks: SpotifyApi.TrackObjectFull[] | SpotifyApi.TrackObjectSimplified[];
 </script>
@@ -23,23 +27,39 @@
 	</div>
 	{#each tracks as track, index}
 		<div
-			class="row flex items-center py-3 px-2 rounded-md p-2 mb-2 hover:bg-[rgba(255,255,255,0.05)]"
+			class="row flex items-center py-3 px-2 rounded-md p-2 mb-2 hover:bg-[rgba(255,255,255,0.05)] group"
 		>
 			<div class="number-column w-[30px] flex justify-end mr-[15px]">
-				<span class="number text-lightGray text-sm">{index + 1}</span>
+				{#if currentlyPlaying === track.id && !isPaused}
+					<img src={playingGif} class="w-4 group-hover:hidden" alt="" />
+				{:else}
+					<span
+						class="number text-lightGray text-sm group-hover:hidden {currentlyPlaying === track.id
+							? 'text-accentColor'
+							: ''}">{index + 1}</span
+					>
+				{/if}
 				<Player
+					className="hidden mr-1 group-hover:block"
 					{track}
 					on:play={(e) => {
-						console.log(e.detail.track);
+						currentlyPlaying = e.detail.track.id;
+						isPaused = false;
 					}}
 					on:pause={(e) => {
-						console.log(e.detail.track);
+						isPaused = e.detail.track.id === currentlyPlaying;
 					}}
 				/>
 			</div>
-			<div class="info-column flex-1">
+			<div class="info-column flex-1 ">
 				<div class="track-title flex items-center">
-					<h4 class="m-0 leading-none text-base font-normal">{track.name}</h4>
+					<h4
+						class="m-0 leading-none text-base font-normal {currentlyPlaying === track.id
+							? 'text-accentColor'
+							: ''}"
+					>
+						{track.name}
+					</h4>
 					{#if track.explicit}
 						<span
 							class="explicit uppercase text-xs ml-2 border py-[2px] px-1 rounded-sm leading-[10px] border-lightGray text-lightGray"

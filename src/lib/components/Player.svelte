@@ -9,6 +9,9 @@
 	type Track = SpotifyApi.TrackObjectFull | SpotifyApi.TrackObjectSimplified;
 
 	export let track: Track;
+	export let className = '';
+
+	$: console.log('track', track);
 
 	const dispatch = createEventDispatcher<{
 		play: { track: Track };
@@ -24,13 +27,16 @@
 			current.pause();
 		}
 		current = audio;
+		current.volume = 0.1;
 		dispatch('play', { track });
 	}
 
-	function onPause() {}
+	function onPause() {
+		dispatch('pause', { track });
+	}
 </script>
 
-<div class="player">
+<div class="player {className}">
 	<audio
 		class="hidden"
 		bind:this={audio}
@@ -40,7 +46,6 @@
 		controls
 		src={track.preview_url}
 		preload="none"
-		volume={0.1}
 	/>
 	<button
 		class="w-3 h-3 p-0 bg-none border-none cursor-pointer"
