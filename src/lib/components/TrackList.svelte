@@ -39,17 +39,18 @@
 							: ''}">{index + 1}</span
 					>
 				{/if}
-				<Player
-					className="hidden mr-1 group-hover:block"
-					{track}
-					on:play={(e) => {
-						currentlyPlaying = e.detail.track.id;
-						isPaused = false;
-					}}
-					on:pause={(e) => {
-						isPaused = e.detail.track.id === currentlyPlaying;
-					}}
-				/>
+				<div class="player-comp hidden mr-1 group-hover:block">
+					<Player
+						{track}
+						on:play={(e) => {
+							currentlyPlaying = e.detail.track.id;
+							isPaused = false;
+						}}
+						on:pause={(e) => {
+							isPaused = e.detail.track.id === currentlyPlaying;
+						}}
+					/>
+				</div>
 			</div>
 			<div class="info-column flex-1 ">
 				<div class="track-title flex items-center">
@@ -85,4 +86,58 @@
 </div>
 
 <style lang="scss">
+	.tracks {
+		.row {
+			@media only screen and (max-width: 764px) {
+				:global(.no-js) & {
+					flex-direction: column;
+					background-color: rgba(255, 255, 255, 0.03);
+					padding: 20px;
+					margin-bottom: 20px;
+				}
+			}
+			&.header {
+				@media only screen and (max-width: 764px) {
+					:global(.no-js) & {
+						display: none;
+					}
+				}
+			}
+			&:not(.header) {
+				.number-column {
+					:global(html.no-js) & {
+						width: 200px;
+						display: flex;
+						align-items: center;
+						@media only screen and (max-width: 764px) {
+							width: 100%;
+							margin-right: 0;
+							margin-bottom: 15px;
+						}
+						.player-comp {
+							display: block !important;
+							width: 100%;
+							margin-left: 10px;
+						}
+					}
+				}
+				.info-column {
+					@media only screen and (max-width: 764px) {
+						:global(.no-js) & {
+							width: 100% !important;
+						}
+					}
+				}
+
+				.duration-column {
+					@media only screen and (max-width: 764px) {
+						:global(.no-js) & {
+							width: 100%;
+							margin: 10px 0;
+						}
+					}
+				}
+			}
+		}
+	}
 </style>

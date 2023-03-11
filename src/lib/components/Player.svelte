@@ -46,6 +46,7 @@
 		controls
 		src={track.preview_url}
 		preload="none"
+		volume={0.1}
 	/>
 	<button
 		class="w-3 h-3 p-0 bg-none border-none cursor-pointer"
@@ -62,3 +63,19 @@
 		{/if}
 	</button>
 </div>
+
+<style lang="scss">
+	.player {
+		audio {
+			:global(html.no-js) & {
+				display: block !important;
+				width: 100%;
+			}
+		}
+		button {
+			:global(html.no-js) & {
+				display: none;
+			}
+		}
+	}
+</style>
