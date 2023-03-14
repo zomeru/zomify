@@ -11,8 +11,6 @@
 	export let track: Track;
 	export let className = '';
 
-	$: console.log('track', track);
-
 	const dispatch = createEventDispatcher<{
 		play: { track: Track };
 		pause: { track: Track };
@@ -44,10 +42,11 @@
 		on:play={onPlay}
 		on:pause={onPause}
 		controls
-		src={track.preview_url}
 		preload="none"
 		volume={0.1}
-	/>
+	>
+		<source src={track.preview_url} type="audio/mpeg" />
+	</audio>
 	<button
 		class="w-3 h-3 p-0 bg-none border-none cursor-pointer"
 		aria-label={paused ? `Play ${track.name}` : `Pause ${track.name}`}

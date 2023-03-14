@@ -4,8 +4,6 @@
 
 	export let data: PageData;
 
-	$: console.log(data);
-
 	let sections: {
 		title: string;
 		path: string;
@@ -59,8 +57,6 @@
 			];
 		}
 	}
-
-	$: console.log(sections);
 </script>
 
 {#each sections as section}

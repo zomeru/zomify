@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
+	import Button from './Button.svelte';
 
 	export let className = '';
+	export let noDesign = false;
 </script>
 
 <form
@@ -20,5 +22,5 @@
 	}}
 	use:enhance
 >
-	<button type="submit" class={className}>Logout</button>
+	<Button element="button" type="submit" {className} {noDesign}>Logout</Button>
 </form>

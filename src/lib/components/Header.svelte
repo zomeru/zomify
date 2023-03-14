@@ -64,8 +64,8 @@
 						>
 					</li>
 					<li class="btn-gradient-light">
-						<div class="border-none bg-none cursor-pointer text-menuText">
-							<LogoutButton className="px-4 py-3  w-full text-left" />
+						<div class="border-none bg-none cursor-pointer text-menuText py-1">
+							<LogoutButton className="w-full text-left" noDesign />
 						</div>
 					</li>
 				</ul>
@@ -84,18 +84,17 @@
 	:global(html.no-js) #profile-menu {
 		display: block !important;
 		background-color: var(--header-color) !important;
-		
 
 		#profile-menu-content {
 			ul {
 				padding: 0;
 				margin: 0;
 				display: flex;
-				justify-content: 	flex-end;
+				justify-content: flex-end;
 				flex-wrap: wrap;
 
 				@media only screen and (max-width: 450px) {
-					justify-content: 	flex-start;
+					justify-content: flex-start;
 				}
 			}
 		}
