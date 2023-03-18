@@ -4,20 +4,20 @@
 	import { Button, LogoutButton } from '$components';
 
 	let isRetrying = false;
-	const retryRoutes = ['/album/[id'];
+	const retryRoutes = ['/album/[id', '/playlist/[id]'];
 </script>
 
 <svelte:head>
 	<title>{$page.status}</title>
 </svelte:head>
 
-<div class="content text-center">
+<div class="text-center">
 	<h1 class="text-5xl">{$page.error?.message}</h1>
 
 	{#if $page.status === 404}
 		<p class="text-2xl">The page you are trying to access cannot be found.</p>
 
-		<div class="button mt-10 space-x-3">
+		<div class="mt-10 space-x-3">
 			<Button element="a" href="/">Home</Button>
 			<Button element="a" href="/search">Search</Button>
 		</div>
@@ -29,7 +29,7 @@
 	{/if}
 
 	{#if ![404, 401].includes($page.status) && $page.route.id && retryRoutes.includes($page.route.id)}
-		<div class="buttons">
+		<div>
 			<Button
 				element="button"
 				on:click={async () => {

@@ -25,7 +25,7 @@
 			current.pause();
 		}
 		current = audio;
-		current.volume = 0.1;
+		current.volume = 0.2;
 		dispatch('play', { track });
 	}
 
@@ -43,7 +43,6 @@
 		on:pause={onPause}
 		controls
 		preload="none"
-		volume={0.1}
 	>
 		<source src={track.preview_url} type="audio/mpeg" />
 	</audio>
