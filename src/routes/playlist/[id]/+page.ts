@@ -2,9 +2,12 @@ import { error } from '@sveltejs/kit';
 import { fetchRefresh } from '$helpers';
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch: _fetch, params, depends, route }) => {
+export const load: PageLoad = async ({ fetch: _fetch, params, depends, route, url }) => {
 	depends(`app:${route.id}`);
 	const fetch = (path: string) => fetchRefresh(_fetch, path);
+
+	const limit = 100;
+	const page = url.searchParams.get('page');
 
 	const playlistResponse = await fetch(`/api/spotify/playlists/${params.id}`);
 
@@ -13,6 +16,23 @@ export const load: PageLoad = async ({ fetch: _fetch, params, depends, route }) 
 	}
 
 	const playlistResponseJSON: SpotifyApi.SinglePlaylistResponse = await playlistResponse.json();
+
+	if (page && page !== '1') {
+		const tracksResponse = await fetch(
+			`/api/spotify/playlists/${params.id}/tracks?${new URLSearchParams({
+				limit: limit.toString(),
+				offset: ((Number(page) - 1) * limit).toString()
+			}).toString()}`
+		);
+
+		if (!tracksResponse.ok) {
+			throw error(tracksResponse.status, 'Failed to load playlist tracks!');
+		}
+
+		const tracksResponseJSON = await tracksResponse.json();
+
+		playlistResponseJSON.tracks = tracksResponseJSON;
+	}
 
 	let color = null;
 
